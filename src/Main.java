@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-
+String exp = "-1";
 
         String [] end = new String [1];
         end[0] ="Нет";
@@ -27,11 +27,24 @@ public class Main {
         System.out.println("Введите выражение [1 + 2] или [I + II]");
 Main main = new Main();
 
-            firstValue = main.meaning(firstValue);
-            operation = main.meaning(operation);
-            secondValue = main.meaning(secondValue);
+        Scanner scanner = new Scanner(System.in);
+        int index = -1;
+        exp = scanner.nextLine();
+        String[] action = {"+" ,"-","/","*"};
+        String []data = {"-1","-1","-1","-1"};
+try{
+        data = exp.split(" ");
+        firstValue = data[0];
+        operation = data[1];
+        secondValue = data[2];
+}catch (Exception e){System.out.println("Неккоректный ввод значений");}
+        scanner.close();
+    if(data[0].equals("-1") || data[1].equals("-1") || data[2].equals("-1")){System.out.println("Неккоректный ввод значений");System.exit(0);}
 
+      //if(data.length >=4){System.out.println("Неккоректный ввод значений");}
 
+int ck = data.length;
+      if(ck >=4){System.out.println("Неккоректный ввод значений");System.exit(0);}
 
 
 
@@ -41,13 +54,17 @@ Main main = new Main();
         main.translate(Translate,firstValue);
         main.translate2(Translate,secondValue);
         main.check(operation,numberOneR,numberTwoR,firstValue,secondValue,end,Translate);
-exit = end[0];
-        if (numberOneR[0]==1 && numberTwoR[0]==1 ){calc(exit);}
+
+        exit = end[0];
+
+        if(numberOneR[0]==1 && numberTwoR[0]==1){calc(exit);}
+
+
 
 
 
     }
-    Scanner scanner = new Scanner(System.in);
+
 
 
 public static String calc(String input)
@@ -187,18 +204,7 @@ public static String calc(String input)
     }
 
 
-    String meaning(String number)//присвоение значения.
-    {
-        try {
-            number = scanner.next();
 
-        }
-        catch (Exception e){
-            System.out.println(e.getMessage());
-            System.exit(0);
-        }
-        return number;
-    }
 
     int comandOne(int numberOneR[], String a) {//Здесь проверка всех условий. + понять римские или арабске.
 
